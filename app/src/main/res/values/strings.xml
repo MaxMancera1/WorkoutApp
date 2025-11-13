@@ -1,3 +1,34 @@
 <resources>
     <string name="app_name">WorkoutApp</string>
+
+    <!-- MainActivity -->
+    <string name="workouts">Workouts</string>
+    <string name="calories">Calories</string>
+    <string name="avg_duration">Avg Duration</string>
+    <string name="add_workout">Add Workout</string>
+    <string name="total_workouts_initial">0</string>
+    <string name="total_calories_initial">0 kcal</string>
+    <string name="avg_duration_initial">0 min</string>
+
+    <!-- item_workout.xml -->
+    <string name="workout_icon_content_description">Workout type icon</string>
+
+    <!-- Add Workout Dialog -->
+    <string name="dialog_add_workout_title">Add Workout</string>
+    <string name="dialog_duration_hint">Duration (minutes)</string>
+    <string name="dialog_calories_hint">Calories Burned</string>
+    <string name="dialog_distance_hint">Distance (km)</string>
+    <string name="dialog_add_button">Add</string>
+    <string name="dialog_cancel_button">Cancel</string>
+    <string name="fill_fields_prompt">Please fill all fields correctly</string>
+
+    <!-- Workout Details & Share -->
+    <string name="share_dialog_title">Share</string>
+    <string name="share_dialog_close">Close</string>
+    <string name="share_message_title">Check out my workout!</string>
+    <string name="share_message_type">Type: %1$s</string>
+    <string name="share_message_duration">Duration: %1$d min</string>
+    <string name="share_message_calories">Calories: %1$d kcal</string>
+    <string name="share_message_distance">Distance: %1$.1f km</string>
+    <string name="share_message_date">Date: %1$s</string>
 </resources>

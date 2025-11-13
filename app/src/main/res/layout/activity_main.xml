@@ -28,7 +28,7 @@
                 android:id="@+id/totalWorkouts"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="0"
+                android:text="@string/total_workouts_initial"
                 android:textColor="@color/white"
                 android:textSize="24sp"
                 android:textStyle="bold" />
@@ -36,7 +36,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Workouts"
+                android:text="@string/workouts"
                 android:textColor="@color/white"
                 android:textSize="12sp" />
         </LinearLayout>
@@ -53,7 +53,7 @@
                 android:id="@+id/totalCalories"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="0 kcal"
+                android:text="@string/total_calories_initial"
                 android:textColor="@color/white"
                 android:textSize="24sp"
                 android:textStyle="bold" />
@@ -61,7 +61,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Calories"
+                android:text="@string/calories"
                 android:textColor="@color/white"
                 android:textSize="12sp" />
         </LinearLayout>
@@ -78,7 +78,7 @@
                 android:id="@+id/avgDuration"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="0 min"
+                android:text="@string/avg_duration_initial"
                 android:textColor="@color/white"
                 android:textSize="24sp"
                 android:textStyle="bold" />
@@ -86,7 +86,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Avg Duration"
+                android:text="@string/avg_duration"
                 android:textColor="@color/white"
                 android:textSize="12sp" />
         </LinearLayout>
@@ -109,7 +109,7 @@
         android:layout_alignParentBottom="true"
         android:layout_margin="16dp"
         android:padding="16dp"
-        android:text="Add Workout"
+        android:text="@string/add_workout"
         android:textAllCaps="false"
         app:backgroundTint="@color/accentGreen"
         app:cornerRadius="12dp" />

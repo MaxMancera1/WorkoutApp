@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.widget.ArrayAdapter
-import android.widget.Button
 import android.widget.DatePicker
 import android.widget.EditText
 import android.widget.Spinner
@@ -17,8 +16,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.workoutapp.adapter.WorkoutAdapter
 import com.example.workoutapp.model.Workout
 import com.google.android.material.button.MaterialButton
+import java.text.SimpleDateFormat
 import java.util.Calendar
-import java.util.Date
+import java.util.Locale
 
 class MainActivity : AppCompatActivity() {
 
@@ -68,8 +68,8 @@ class MainActivity : AppCompatActivity() {
         val avgDurationValue = if (workouts.isNotEmpty()) workouts.map { it.duration }.average() else 0.0
 
         totalWorkouts.text = workoutCount.toString()
-        totalCalories.text = "${totalCaloriesValue} kcal"
-        avgDuration.text = "${avgDurationValue.toInt()} min"
+        totalCalories.text = getString(R.string.total_calories_format, totalCaloriesValue)
+        avgDuration.text = getString(R.string.avg_duration_format, avgDurationValue.toInt())
     }
 
     private fun showAddWorkoutDialog() {
@@ -80,15 +80,20 @@ class MainActivity : AppCompatActivity() {
         val distanceEditText: EditText = dialogView.findViewById(R.id.distanceEditText)
         val datePicker: DatePicker = dialogView.findViewById(R.id.datePicker)
 
-        val workoutTypes = arrayOf("Running", "Cycling", "Swimming", "Yoga", "Weight Training")
+        // Set hints from string resources
+        durationEditText.hint = getString(R.string.dialog_duration_hint)
+        caloriesEditText.hint = getString(R.string.dialog_calories_hint)
+        distanceEditText.hint = getString(R.string.dialog_distance_hint)
+
+        val workoutTypes = resources.getStringArray(R.array.workout_types)
         val spinnerAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, workoutTypes)
         spinner.adapter = spinnerAdapter
 
         val dialog = AlertDialog.Builder(this)
-            .setTitle("Add Workout")
+            .setTitle(R.string.dialog_add_workout_title)
             .setView(dialogView)
-            .setPositiveButton("Add", null)
-            .setNegativeButton("Cancel", null)
+            .setPositiveButton(R.string.dialog_add_button, null)
+            .setNegativeButton(R.string.dialog_cancel_button, null)
             .create()
 
         dialog.setOnShowListener {
@@ -100,7 +105,7 @@ class MainActivity : AppCompatActivity() {
                 val distance = distanceEditText.text.toString().toDoubleOrNull()
 
                 if (duration == null || calories == null || distance == null) {
-                    Toast.makeText(this, "Please fill all fields correctly", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, R.string.fill_fields_prompt, Toast.LENGTH_SHORT).show()
                     return@setOnClickListener
                 }
 
@@ -119,21 +124,26 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun showWorkoutDetails(workout: Workout) {
-        val workoutDetails = "Check out my workout!\n" +
-                "Type: ${workout.type}\n" +
-                "Duration: ${workout.duration} min\n" +
-                "Calories: ${workout.calories} kcal\n" +
-                "Distance: ${workout.distance} km\n" +
-                "Date: ${android.text.format.DateFormat.getMediumDateFormat(this).format(workout.date)}"
+        val formattedDate = SimpleDateFormat("MMM dd, yyyy", Locale.getDefault()).format(workout.date)
+
+        val workoutDetails = """
+            ${getString(R.string.share_message_type, workout.type)}
+            ${getString(R.string.share_message_duration, workout.duration)}
+            ${getString(R.string.share_message_calories, workout.calories)}
+            ${getString(R.string.share_message_distance, workout.distance)}
+            ${getString(R.string.share_message_date, formattedDate)}
+        """.trimIndent()
+
+        val shareMessage = "${getString(R.string.share_message_title)}\n\n$workoutDetails"
 
         AlertDialog.Builder(this)
             .setTitle(workout.type)
             .setMessage(workoutDetails)
-            .setPositiveButton("Close", null)
-            .setNeutralButton("Share") { _, _ ->
+            .setPositiveButton(R.string.share_dialog_close, null)
+            .setNeutralButton(R.string.share_dialog_title) { _, _ ->
                 val sendIntent: Intent = Intent().apply {
                     action = Intent.ACTION_SEND
-                    putExtra(Intent.EXTRA_TEXT, workoutDetails)
+                    putExtra(Intent.EXTRA_TEXT, shareMessage)
                     type = "text/plain"
                 }
                 val shareIntent = Intent.createChooser(sendIntent, null)

@@ -21,10 +21,11 @@
             android:id="@+id/workoutIcon"
             android:layout_width="40dp"
             android:layout_height="40dp"
+            android:contentDescription="@string/workout_icon_content_description"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:srcCompat="@android:drawable/ic_menu_camera" /> <!-- Placeholder Icon -->
+            tools:srcCompat="@drawable/ic_running" />
 
         <TextView
             android:id="@+id/workoutType"
