@@ -2,4 +2,16 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <!-- Prototipo Colors -->
+    <color name="primaryBlue">#0085FF</color>
+    <color name="accentGreen">#34C759</color>
+    <color name="lightGray">#F2F2F7</color>
+    <color name="textGray">#8A8A8E</color>
+
+    <!-- Workout Stat Colors -->
+    <color name="durationColor">#007AFF</color>
+    <color name="caloriesColor">#FF9500</color>
+    <color name="distanceColor">#34C759</color>
+
 </resources>

@@ -16,14 +16,14 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.workoutapp.adapter.WorkoutAdapter
 import com.example.workoutapp.model.Workout
-import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.android.material.button.MaterialButton
 import java.util.Calendar
 import java.util.Date
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var recyclerView: RecyclerView
-    private lateinit var fab: FloatingActionButton
+    private lateinit var addWorkoutButton: MaterialButton
     private lateinit var totalWorkouts: TextView
     private lateinit var totalCalories: TextView
     private lateinit var avgDuration: TextView
@@ -36,13 +36,13 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         recyclerView = findViewById(R.id.recyclerView)
-        fab = findViewById(R.id.fab)
+        addWorkoutButton = findViewById(R.id.addWorkoutButton)
         totalWorkouts = findViewById(R.id.totalWorkouts)
         totalCalories = findViewById(R.id.totalCalories)
         avgDuration = findViewById(R.id.avgDuration)
 
         setupRecyclerView()
-        setupFab()
+        setupAddWorkoutButton()
         updateStats()
     }
 
@@ -56,8 +56,8 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun setupFab() {
-        fab.setOnClickListener {
+    private fun setupAddWorkoutButton() {
+        addWorkoutButton.setOnClickListener {
             showAddWorkoutDialog()
         }
     }
@@ -67,9 +67,9 @@ class MainActivity : AppCompatActivity() {
         val totalCaloriesValue = workouts.sumOf { it.calories }
         val avgDurationValue = if (workouts.isNotEmpty()) workouts.map { it.duration }.average() else 0.0
 
-        totalWorkouts.text = "Workouts: $workoutCount"
-        totalCalories.text = "Calories: $totalCaloriesValue"
-        avgDuration.text = "Avg Duration: ${String.format("%.2f", avgDurationValue)} min"
+        totalWorkouts.text = workoutCount.toString()
+        totalCalories.text = "${totalCaloriesValue} kcal"
+        avgDuration.text = "${avgDurationValue.toInt()} min"
     }
 
     private fun showAddWorkoutDialog() {
@@ -122,9 +122,9 @@ class MainActivity : AppCompatActivity() {
         val workoutDetails = "Check out my workout!\n" +
                 "Type: ${workout.type}\n" +
                 "Duration: ${workout.duration} min\n" +
-                "Calories: ${workout.calories}\n" +
+                "Calories: ${workout.calories} kcal\n" +
                 "Distance: ${workout.distance} km\n" +
-                "Date: ${android.text.format.DateFormat.getDateFormat(this).format(workout.date)}"
+                "Date: ${android.text.format.DateFormat.getMediumDateFormat(this).format(workout.date)}"
 
         AlertDialog.Builder(this)
             .setTitle(workout.type)
