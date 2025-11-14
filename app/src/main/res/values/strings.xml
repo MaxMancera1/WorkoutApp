@@ -9,6 +9,8 @@
     <string name="total_workouts_initial">0</string>
     <string name="total_calories_initial">0 kcal</string>
     <string name="avg_duration_initial">0 min</string>
+    <string name="total_calories_format">%d kcal</string>
+    <string name="avg_duration_format">%d min</string>
 
     <!-- item_workout.xml -->
     <string name="workout_icon_content_description">Workout type icon</string>
@@ -21,6 +23,13 @@
     <string name="dialog_add_button">Add</string>
     <string name="dialog_cancel_button">Cancel</string>
     <string name="fill_fields_prompt">Please fill all fields correctly</string>
+    <string-array name="workout_types">
+        <item>Running</item>
+        <item>Cycling</item>
+        <item>Swimming</item>
+        <item>Yoga</item>
+        <item>Weight Training</item>
+    </string-array>
 
     <!-- Workout Details & Share -->
     <string name="share_dialog_title">Share</string>
